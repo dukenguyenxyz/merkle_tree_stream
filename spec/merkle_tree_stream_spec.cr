@@ -43,7 +43,6 @@ describe MerkleTree do
         index: 1_u64, parent: 3_u64, hash: hashed, size: 2_u64, data: Bytes.empty
       )
     )
-    puts nodes
   end
 
   it "should write single root" do
