@@ -14,7 +14,7 @@ describe MerkleTree do
   end
 
   it "should hash" do
-    merkle = MerkleTree::Generator.new(leaf, parent)
+    merkle = MerkleTree::Stream.new(leaf, parent)
     nodes = [] of MerkleTree::Node
     merkle.next("a".to_slice, nodes)
     merkle.next("b".to_slice, nodes)
@@ -45,7 +45,7 @@ describe MerkleTree do
   end
 
   it "should write single root" do
-    merkle = MerkleTree::Generator.new(leaf, parent)
+    merkle = MerkleTree::Stream.new(leaf, parent)
     merkle.next("a".to_slice)
     merkle.next("b".to_slice)
     merkle.next("c".to_slice)
@@ -55,7 +55,7 @@ describe MerkleTree do
   end
 
   it "should write multiple roots" do
-    merkle = MerkleTree::Generator.new(leaf, parent)
+    merkle = MerkleTree::Stream.new(leaf, parent)
 
     merkle.next("a".to_slice)
     merkle.next("b".to_slice)

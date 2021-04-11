@@ -12,7 +12,7 @@ module MerkleTree
     end
   end
 
-  class Generator
+  class Stream
     getter leaf : Proc(Node, Array(Node)?, Bytes)
     getter parent : Proc(Node, Node, Bytes)
     getter roots : Array(Node) = [] of Node
