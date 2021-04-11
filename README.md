@@ -10,11 +10,11 @@ A stream that generates a merkle tree based on the incoming data. Port of [mafin
 
 1. Add the dependency to your `shard.yml`:
 
-   ```yaml
-   dependencies:
-     merkle_tree_stream:
-       github: dukeraphaelng/merkle_tree_stream
-   ```
+```yaml
+dependencies:
+  merkle_tree_stream:
+    github: dukeraphaelng/merkle_tree_stream
+```
 
 2. Run `shards install`
 
