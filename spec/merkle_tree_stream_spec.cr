@@ -15,27 +15,33 @@ describe MerkleTree do
 
   it "should hash" do
     merkle = MerkleTree::Generator.new(leaf, parent)
-    merkle.next("a".to_slice)
-    merkle.next("b".to_slice)
+    nodes = [] of MerkleTree::Node
+    merkle.next("a".to_slice, nodes)
+    merkle.next("b".to_slice, nodes)
 
-    # merkle.roots.size.should eq(3)
-    # merkle.next.should eq(MerkleTree::Node.new(
-    #   index: 0_u64, parent: 1_u64, hash: Digest::SHA256.digest("a".to_slice), size: 1_u64, dat: "a".to_slice
-    # ))
-    # merkle.next.should eq(MerkleTree::Node.new(
-    #   index: 2_u64, parent: 1_u64, hash: Digest::SHA256.digest("b".to_slice), size: 1_u64, dat: "b".to_slice
-    # ))
+    nodes.size.should eq(3)
 
-    # hashed = Digest::SHA256.digest do |ctx|
-    #   ctx.update "a".to_slice
-    #   ctx.update "b".to_slice
-    # end
+    compare_nodes(nodes[0],
+      MerkleTree::Node.new(
+        index: 0_u64, parent: 1_u64, hash: Digest::SHA256.digest("a".to_slice), size: 1_u64, data: "a".to_slice
+      )
+    )
+    compare_nodes(nodes[1],
+      MerkleTree::Node.new(
+        index: 2_u64, parent: 1_u64, hash: Digest::SHA256.digest("b".to_slice), size: 1_u64, data: "b".to_slice
+      )
+    )
 
-    # merkle.next.should eq(MerkleTree::Node.new(
-    #   index: 1_u64, parent: 3_u64, hash: hashed, size: 2_u64, data: Bytes.empty
-    # ))
+    hashed = Digest::SHA256.digest do |ctx|
+      ctx.update "a".to_slice
+      ctx.update "b".to_slice
+    end
 
-    # expect_raises(FinalizedError) { merkle.next }
+    compare_nodes(nodes[2],
+      MerkleTree::Node.new(
+        index: 1_u64, parent: 3_u64, hash: hashed, size: 2_u64, data: Bytes.empty
+      )
+    )
   end
 
   it "should write single root" do
@@ -57,4 +63,13 @@ describe MerkleTree do
 
     merkle.roots.size.should be > 1
   end
+end
+
+# Helpers
+private def compare_nodes(a, b)
+  a.index.should eq(b.index)
+  a.parent.should eq(b.parent)
+  a.hash.should eq(b.hash)
+  a.size.should eq(a.size)
+  a.data.should eq(b.data)
 end
