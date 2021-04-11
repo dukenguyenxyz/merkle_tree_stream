@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="crystal_docs.project_version" content="HEAD">
+<meta name="crystal_docs.project_name" content="merkle_tree_stream">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="merkle_tree_stream">
+  <title>MerkleTree::Stream - merkle_tree_stream HEAD</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          merkle_tree_stream
+        </a>
+      </h1>
+
+      <span class="project-version">
+        HEAD
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="merkle_tree_stream/MerkleTree" data-name="merkletree">
+      <a href="../MerkleTree.html">MerkleTree</a>
+      
+        <ul>
+  
+  <li class=" " data-id="merkle_tree_stream/MerkleTree/Node" data-name="merkletree::node">
+      <a href="../MerkleTree/Node.html">Node</a>
+      
+    </li>
+  
+  <li class=" current" data-id="merkle_tree_stream/MerkleTree/Stream" data-name="merkletree::stream">
+      <a href="../MerkleTree/Stream.html">Stream</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> MerkleTree::Stream
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../MerkleTree/Stream.html">MerkleTree::Stream</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/dukeraphaelng/merkle_tree_stream/blob/7519fa6d975f7479fb2e9d70a810d08ad3ce72a7/src/merkle_tree_stream.cr#L20" target="_blank">
+        merkle_tree_stream.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new(leaf,parent,roots=[]ofNode)-class-method" class="signature"><strong>.new</strong>(leaf, parent, roots = <span class="o">[]</span> <span class="k">of</span> <span class="t">Node</span>)</a>
+        
+          <div class="summary"><p>Create a new MerkleTreeStream instance</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#blocks:UInt64-instance-method" class="signature"><strong>#blocks</strong> : UInt64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#leaf:Proc(Node,Array(Node)?,Bytes)-instance-method" class="signature"><strong>#leaf</strong> : Proc(Node, Array(Node)?, Bytes)</a>
+        
+          <div class="summary"><p>Pass data through a hash function</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#next(data:Bytes,nodes:Array(Node)=[]ofNode):Array(Node)-instance-method" class="signature"><strong>#next</strong>(data : Bytes, nodes : Array(Node) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Node</span>) : Array(Node)</a>
+        
+          <div class="summary"><p>Pass a string buffer through the flat-tree hash functions, and write the result back out to "nodes"</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#parent:Proc(Node,Node,Bytes)-instance-method" class="signature"><strong>#parent</strong> : Proc(Node, Node, Bytes)</a>
+        
+          <div class="summary"><p>Pass hashes through a hash function</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#roots:Array(Node)-instance-method" class="signature"><strong>#roots</strong> : Array(Node)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(leaf,parent,roots=[]ofNode)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(leaf, parent, roots = <span class="o">[]</span> <span class="k">of</span> <span class="t">Node</span>)
+
+        <a class="method-permalink" href="#new(leaf,parent,roots=[]ofNode)-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Create a new MerkleTreeStream instance</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/merkle_tree_stream/blob/7519fa6d975f7479fb2e9d70a810d08ad3ce72a7/src/merkle_tree_stream.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="blocks:UInt64-instance-method">
+      <div class="signature">
+        
+        def <strong>blocks</strong> : UInt64
+
+        <a class="method-permalink" href="#blocks:UInt64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/merkle_tree_stream/blob/7519fa6d975f7479fb2e9d70a810d08ad3ce72a7/src/merkle_tree_stream.cr#L26" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="leaf:Proc(Node,Array(Node)?,Bytes)-instance-method">
+      <div class="signature">
+        
+        def <strong>leaf</strong> : Proc(<a href="../MerkleTree/Node.html">Node</a>, Array(<a href="../MerkleTree/Node.html">Node</a>)?, Bytes)
+
+        <a class="method-permalink" href="#leaf:Proc(Node,Array(Node)?,Bytes)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Pass data through a hash function</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/merkle_tree_stream/blob/7519fa6d975f7479fb2e9d70a810d08ad3ce72a7/src/merkle_tree_stream.cr#L22" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="next(data:Bytes,nodes:Array(Node)=[]ofNode):Array(Node)-instance-method">
+      <div class="signature">
+        
+        def <strong>next</strong>(data : Bytes, nodes : Array(<a href="../MerkleTree/Node.html">Node</a>) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Node</span>) : Array(<a href="../MerkleTree/Node.html">Node</a>)
+
+        <a class="method-permalink" href="#next(data:Bytes,nodes:Array(Node)=[]ofNode):Array(Node)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Pass a string buffer through the flat-tree hash functions, and write the result back out to "nodes"</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/merkle_tree_stream/blob/7519fa6d975f7479fb2e9d70a810d08ad3ce72a7/src/merkle_tree_stream.cr#L45" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="parent:Proc(Node,Node,Bytes)-instance-method">
+      <div class="signature">
+        
+        def <strong>parent</strong> : Proc(<a href="../MerkleTree/Node.html">Node</a>, <a href="../MerkleTree/Node.html">Node</a>, Bytes)
+
+        <a class="method-permalink" href="#parent:Proc(Node,Node,Bytes)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Pass hashes through a hash function</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/merkle_tree_stream/blob/7519fa6d975f7479fb2e9d70a810d08ad3ce72a7/src/merkle_tree_stream.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="roots:Array(Node)-instance-method">
+      <div class="signature">
+        
+        def <strong>roots</strong> : Array(<a href="../MerkleTree/Node.html">Node</a>)
+
+        <a class="method-permalink" href="#roots:Array(Node)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/dukeraphaelng/merkle_tree_stream/blob/7519fa6d975f7479fb2e9d70a810d08ad3ce72a7/src/merkle_tree_stream.cr#L25" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
