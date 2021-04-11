@@ -2,10 +2,15 @@ require "flat_tree"
 
 module MerkleTree
   class Node
+    # Offset into the flat-tree data structure
     property index : UInt64
+    # Reference to this node's parent node
     property parent : UInt64
+    # Hash of the data
     property hash : Bytes?
+    # Total size of all its child nodes combined
     property size : UInt64
+    # Data if it's a leaf node, otherwise empty bytes
     property data : Bytes = Bytes.empty
 
     def initialize(@index, @parent, @size, @data, @hash)
@@ -13,11 +18,14 @@ module MerkleTree
   end
 
   class Stream
+    # Pass data through a hash function
     getter leaf : Proc(Node, Array(Node)?, Bytes)
+    # Pass hashes through a hash function
     getter parent : Proc(Node, Node, Bytes)
     getter roots : Array(Node) = [] of Node
     getter blocks : UInt64
 
+    # Create a new MerkleTreeStream instance
     def initialize(@leaf, @parent, @roots = [] of Node)
       @blocks = if @roots.size > 0
                   1_u64 + FlatTree.right_span(@roots.last.index) / 2_u64
@@ -33,6 +41,7 @@ module MerkleTree
       self
     end
 
+    # Pass a string buffer through the flat-tree hash functions, and write the result back out to "nodes"
     def next(data : Bytes, nodes : Array(Node) = [] of Node) : Array(Node)
       index : UInt64 = 2_u64 * @blocks
       @blocks += 1
