@@ -21,12 +21,12 @@ describe MerkleTree do
 
     nodes.size.should eq(3)
 
-    compare_nodes(nodes[0],
+    equal_obj(nodes[0],
       MerkleTree::Node.new(
         index: 0_u64, parent: 1_u64, hash: Digest::SHA256.digest("a".to_slice), size: 1_u64, data: "a".to_slice
       )
     )
-    compare_nodes(nodes[1],
+    equal_obj(nodes[1],
       MerkleTree::Node.new(
         index: 2_u64, parent: 1_u64, hash: Digest::SHA256.digest("b".to_slice), size: 1_u64, data: "b".to_slice
       )
@@ -37,7 +37,7 @@ describe MerkleTree do
       ctx.update "b".to_slice
     end
 
-    compare_nodes(nodes[2],
+    equal_obj(nodes[2],
       MerkleTree::Node.new(
         index: 1_u64, parent: 3_u64, hash: hashed, size: 2_u64, data: Bytes.empty
       )
@@ -63,13 +63,4 @@ describe MerkleTree do
 
     merkle.roots.size.should be > 1
   end
-end
-
-# Helpers
-private def compare_nodes(a, b)
-  a.index.should eq(b.index)
-  a.parent.should eq(b.parent)
-  a.hash.should eq(b.hash)
-  a.size.should eq(a.size)
-  a.data.should eq(b.data)
 end
