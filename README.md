@@ -1,6 +1,6 @@
 # merkle_tree_stream
 
-[![Build Status](https://travis-ci.com/dukeraphaelng/merkle_tree_stream.svg?branch=master)](https://travis-ci.com/dukeraphaelng/merkle_tree_stream) [![Docs](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://dukeraphaelng.github.io/merkle_tree_stream/) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/dukeraphaelng/merkle_tree_stream)](https://img.shields.io/github/v/release/dukeraphaelng/merkle_tree_stream?style=flat-square)
+[![Docs](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://dukeraphaelng.github.io/merkle_tree_stream/) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/dukeraphaelng/merkle_tree_stream)](https://img.shields.io/github/v/release/dukeraphaelng/merkle_tree_stream?style=flat-square)
 
 A stream that generates a merkle tree based on the incoming data. Port of [mafintosh/merkle-tree-stream](https://github.com/mafintosh/merkle-tree-stream)
 
